@@ -53,7 +53,7 @@ public class UserControllerTest {
         String userName = "wheesunglee";
         String password = "a1234";
 
-        when(userService.register(userName, password)).thenThrow(new CustomException(ErrorCode.DUPLICATE_USER_NAME, ""));
+        when(userService.register(userName, password)).thenThrow(new CustomException(ErrorCode.DUPLICATE_USER_NAME));
 
         mockMvc.perform(post("/api/v1/users/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -80,7 +80,7 @@ public class UserControllerTest {
         String userName = "wheesunglee";
         String password = "a1234";
 
-        when(userService.signIn(userName, password)).thenThrow(new CustomException(ErrorCode.DUPLICATE_USER_NAME, ""));
+        when(userService.signIn(userName, password)).thenThrow(new CustomException(ErrorCode.USER_NOT_FOUND));
 
         mockMvc.perform(post("/api/v1/users/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -94,7 +94,7 @@ public class UserControllerTest {
         String userName = "wheesunglee";
         String password = "a1234";
 
-        when(userService.signIn(userName, password)).thenThrow(new CustomException(ErrorCode.DUPLICATE_USER_NAME, ""));
+        when(userService.signIn(userName, password)).thenThrow(new CustomException(ErrorCode.INVALID_PASSWORD));
 
         mockMvc.perform(post("/api/v1/users/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
